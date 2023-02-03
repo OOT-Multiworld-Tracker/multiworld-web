@@ -21,8 +21,8 @@ import ToastManager from './Toasts/ToastManager'
 init({
   dsn: 'https://8957f94163d144e1b2efc135a8a2be1e@o174553.ingest.sentry.io/6000676',
   integrations: [new Integrations.BrowserTracing()],
-  release: 'ocarina-of-time-multiworld@v' + process.env.npm_package_version,
-  environment: process.env.NODE_ENV,
+  release: 'ocarina-of-time-multiworld@web',
+  environment: 'web',
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production

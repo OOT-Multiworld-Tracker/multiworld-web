@@ -1,0 +1,280 @@
+{
+    "name": "Ocarina of Time",
+    
+    "items": [
+        {
+            "name": "Deku Sticks",
+            "values": [
+                0,
+                10,
+                20,
+                30
+            ]
+        },
+        {
+            "name": "Deku Nuts",
+            "values": [
+                0,
+                20,
+                30,
+                40
+            ]
+        },
+        {
+            "name": "Bomb Bag",
+            "category": "Explosives",
+            "values": [
+                0,
+                30,
+                40,
+                50
+            ]
+        },
+        {
+            "name": "Bombchus",
+            "category": "Explosives",
+            "values": [
+                0,
+                1
+            ]
+        },
+        {
+            "name": "Magic Beans",
+            "category": "Misc",
+            "values": [
+                0,
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "name": "Slingshot",
+            "category": "Ranged",
+            "values": [
+                0,
+                20,
+                30,
+                40
+            ]
+        },
+        "Bow",
+        "Fire Arrows",
+        "Ice Arrows",
+        "Light Arrows",
+        "Dins Fire",
+        "Faroress Wind",
+        "Nayrus Love",
+        "Ocarina",
+        "Hookshot",
+        "Lens of Truth",
+        "Boomerang",
+        "Megaton Hammer",
+        "Bottle",
+        "Bottle",
+        "Bottle",
+        "Bottle",
+        "Rutos Letter",
+        "Child Trade Item",
+        "Adult Trade Item",
+        {
+            "name": "Wallet",
+            "category": "Misc",
+            "values": [
+                99,
+                200,
+                500,
+                999
+            ]
+        },
+        "Progressive Scale",
+        "Progressive Strength",
+        "Kokiri Sword",
+        "Master Sword",
+        "Biggoron Sword",
+        "Goron Tunic",
+        "Zora Tunic",
+        "Deku Shield",
+        "Hylian Shield",
+        "Mirror Shield",
+        "Iron Boots",
+        "Hover Boots",
+        "Gerudo Membership Card",
+        "Stone of Agony",
+        {
+            "name": "Gold Skulltulas",
+            "values": [
+                [0, 50]
+            ]
+        },
+        "Heart Pieces",
+        "Zeldas Lullaby",
+        "Eponas Song",
+        "Suns Song",
+        "Sarias Song",
+        "Song of Time",
+        "Song of Storms",
+        "Minuet of Forest",
+        "Bolero of Fire",
+        "Serenade of Water",
+        "Nocturne of Shadow",
+        "Prelude of Light",
+        "Serenade of Water",
+        "Requiem of Spirit",
+        "Kokiri Emerald",
+        "Goron Ruby",
+        "Zora Sapphire",
+        "Forest Medallion",
+        "Fire Medallion",
+        "Water Medallion",
+        "Spirit Medallion",
+        "Shadow Medallion",
+        "Light Medallion",
+        {
+            "type": "dungeon",
+            "name": "Forest Temple",
+            "max": 6
+        },
+        {
+            "type": "dungeon",
+            "name": "Fire Temple",
+            "max": 8
+        },
+        {
+            "type": "dungeon",
+            "name": "Water Temple",
+            "max": 6
+        },
+        {
+            "type": "dungeon",
+            "name": "Spirit Temple",
+            "max": 7
+        },
+        {
+            "type": "dungeon",
+            "name": "Shadow Temple",
+            "max": 6
+        },
+        {
+            "type": "dungeon",
+            "name": "BOTW",
+            "max": 3
+        },
+        {
+            "type": "dungeon",
+            "name": "GTG",
+            "max": 9
+        },
+        {
+            "type": "dungeon",
+            "name": "Ganon Castle",
+            "max": 3
+        }
+    ],
+
+    "settings": [
+        {
+            "name": "Open Forest",
+            "values": ["closed", "closed deku", "open forest"]
+        },
+        {
+            "name": "Open Kakariko",
+            "values": ["closed", "open letter", "open"]
+        },
+        "Open Door Of Time",
+        {
+            "name": "Zora Fountain",
+            "values": ["closed", "open adult", "open child"]
+        },
+        {
+            "name": "Gerudo Fortress",
+            "values": ["vanilla", "fast", "open"]
+        },
+        "Bombchus in Logic",
+        "Skip Child Zelda",
+        "Shuffle Weird Egg",
+        "Shuffle Cows",
+        "Shuffle Beans",
+        "Shuffle Medigoron Carpet Salesman",
+        {
+            "name": "Shuffle Scrubs",
+            "values": ["no", "affordable", "expensive", "random"]
+        },
+        {
+            "name": "Item Hints",
+            "values": ["none", "highlight", "show"]
+        },
+        "Player Hints",
+        "Follow Current Scene",
+        "Show Unavaliable",
+        {
+            "name": "Shop Sanity",
+            "values": ["no", 1, 2, 3, 4, "random"]
+        },
+        {
+            "name": "Token Sanity",
+            "values": ["vanilla", "dungeon", "overworld"]
+        },
+        "Entrance Sanity"
+    ],
+
+    "mixins": {
+        "IsScrubSanity": {
+            "logic": [
+                {
+                    "type": "setting",
+                    "name":"Shuffle Scrubs",
+                    "index": 1
+                }
+            ]
+        },
+        "HasExplosives": {
+            "logic": [
+                {
+                    "type": "item",
+                    "name": "bombchus",
+                    "index": 1
+                  },
+                  "||",
+                  {
+                    "type": "item",
+                    "name": "Bomb Bag",
+                    "index": 1
+                  }
+            ]
+        },
+        "CanLeaveForest": {
+            "logic": [
+                {
+                    "type": "mixin",
+                    "name": "HasExplosives"
+                },
+                "||",
+                {
+                    "type": "item",
+                    "name": "Progressive Scale",
+                    "index": 1
+                },
+                "||",
+                {
+                    "type": "dungeon",
+                    "index": 0
+                }
+            ]
+        },
+        "CanBecomeAdult": {
+            "logic": [
+                {
+                    "type": "item",
+                    "name": "song of time",
+                    "index": 1
+                  },
+                  {
+                    "type": "item",
+                    "name": "ocarina",
+                    "index": 1
+                  }
+            ]
+        }
+    }
+}

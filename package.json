@@ -4,30 +4,14 @@
   "description": "An ocarina of time multiworld tracker.",
   "main": "app.js",
   "scripts": {
-    "start": "electron-forge start",
-    "server": "webpack && concurrently \"webpack serve --config webpack.config.js --mode=development\" \"npx electron .\" --kill-others",
-    "test": "webpack --config webpack.config.js --mode=production && npx electron .",
+    "server": "webpack && concurrently \"webpack serve --config webpack.config.js --mode=development\" \"node .\" --kill-others",
+    "prod": "webpack --config webpack.config.js --mode=production",
     "dev": "webpack --config webpack.config.js --mode=development && npx electron .",
-    "prod": "npm run test",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "build": "webpack --config webpack.config.js --mode=production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OOT-Multiworld-Tracker/Multiworld-Tracker.git"
-  },
-  "build": {
-    "productName": "Multiworld Tracker",
-    "generateUpdatesFilesForAllChannels": true,
-    "nsis": {
-      "perMachine": true,
-      "shortcutName": "Multiworld Tracker"
-    }
-  },
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
   },
   "author": "",
   "license": "ISC",
@@ -39,17 +23,10 @@
     "@sentry/react": "^6.13.3",
     "@sentry/tracing": "^6.13.3",
     "axios": "^0.24.0",
-    "electron-updater": "^4.3.9",
-    "express": "^4.17.1",
-    "ws": ">=7.4.6"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
-    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@node-minify/babel-minify": "^6.2.0",
     "@node-minify/core": "^6.2.0",
     "babel-core": "^6.26.3",
@@ -58,10 +35,6 @@
     "babel-preset-react": "^6.24.1",
     "concurrently": "^6.3.0",
     "css-loader": "^6.4.0",
-    "electron": "^12.1.0",
-    "electron-devtools-installer": "^3.2.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "electron-webpack": "^2.8.2",
     "html-webpack-plugin": "^5.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -69,43 +42,6 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^4.3.1"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "name": "Multiworld Tracker",
-        "icon": "build/icon.ico",
-        "authors": [
-          "Matthe815"
-        ]
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "multiworld_tracker",
-            "authors": [
-              "Matthe815"
-            ],
-            "setupIcon": "build/icon.ico"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
   },
   "standard.options": {
     "globals": [

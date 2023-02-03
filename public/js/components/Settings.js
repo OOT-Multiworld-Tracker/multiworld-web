@@ -1,8 +1,13 @@
 import React from 'react'
 import app from '../app'
+
+import LanguageContext from '../components/LanguageContext'
+import { GetTranslation } from '../classes/Translator'
 import { List, ListItem } from './Lists'
 
 export default class Settings extends React.Component {
+  static contextType = LanguageContext;
+
   constructor (props) {
     super(props)
     this.state = { settings: app.global.settings }
@@ -31,9 +36,9 @@ export default class Settings extends React.Component {
   render () {
     return (
       <List>
-        {Object.keys(app.global.settings).map((setting) => (
-          <ListItem key={setting.name} onClick={() => this.changeSetting(setting)}>
-            <div className='location-name'>{app.global.settings[setting].name}</div>
+        {Object.keys(app.global.settings).filter((setting) => typeof(app.global.settings[setting]) != 'function').map((setting, index) => (
+          <ListItem key={index} onClick={() => this.changeSetting(setting)}>
+            <div className='location-name'>{GetTranslation(this.context.language, app.global.settings[setting].name)}</div>
             <div className='location-items'>{(app.global.settings[setting].value === true ? 'Yes' : (app.global.settings[setting].value === false ? 'No' : app.global.settings[setting].value))}</div>
           </ListItem>)
         )}

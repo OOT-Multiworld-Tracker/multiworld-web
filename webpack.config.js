@@ -8,11 +8,11 @@ module.exports = {
   target: 'electron-renderer',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/dist')
+    path: path.resolve(__dirname, 'public/dist/app')
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
 
   devServer: {

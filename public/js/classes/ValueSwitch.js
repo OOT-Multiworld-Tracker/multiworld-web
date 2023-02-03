@@ -6,12 +6,12 @@ export default class ValueSwitch {
     /**
      * @type {String}
      */
-    this.name = name
+    this.name = name || console.error('ValueSwitch requires a name.')
 
     /**
     * @type {Object[]}
     */
-    this.values = values
+    this.values = values || console.error('ValueSwitch requires values.')
     this.value = this.values[0]
   }
 
@@ -34,5 +34,15 @@ export default class ValueSwitch {
     } else {
       this.value = this.values[index + 1]
     }
+  }
+
+  /**
+   * Go back through the values
+   */
+  Back () {
+    const index = this.values.indexOf(this.value)
+
+    if (index - 1 > 0)
+      this.value = this.values[index]
   }
 }

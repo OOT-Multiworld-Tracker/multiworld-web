@@ -1,9 +1,7 @@
-import { existsSync, readFileSync } from 'original-fs'
 import { SettingsManager, Location, LocationManager } from '../AppManagers'
 import { GameWorld } from './GameWorld'
 
-const LocationList = (existsSync(process.env.APPDATA + '/multiworld-tracker/locations.json')) ? JSON.parse(readFileSync(process.env.APPDATA + '/multiworld-tracker/locations.json')) : require('../locations.json')
-const SceneList = require('../scenes.json')
+const SceneList = [];
 
 export default class Parser {
   static ParseSpoiler (log, app) {
@@ -46,7 +44,6 @@ export default class Parser {
 
   static addLocationID (id, event) {
     if ((!LocationList[id].event || !LocationList[id].event === -1) && event != -1) LocationList[id].event = event
-    require('electron').ipcRenderer.send('packets', { payload: 7, LocationList })
   }
 
   /**
@@ -57,18 +54,18 @@ export default class Parser {
   static ParseLocations (manager) {
     const locations = new Map()
 
-    LocationList.forEach((locale, index) => {
-      const location = Object.assign({}, locale)
-      location.id = index
-
-      if (location.logic) { location.logic = eval(locale.logic) }
-      locations.set(String(index), new Location(manager, location))
+    require('../locations.json').forEach((locale, index) => {
+        const location = Object.assign({}, locale)
+        location.id = index
+  
+        if (location.logic) { location.logic = eval(locale.logic) }
+        locations.set(String(index), new Location(manager, location))
     })
 
     return locations
   }
 
   static ParseScenes () {
-    return SceneList
+    return require('../scenes.json');
   }
 }
